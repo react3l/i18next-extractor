@@ -1,6 +1,6 @@
 {
   "name": "react-i18next-extract",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React i18next extraction tool",
   "main": "translate.cli.js",
   "repository": "https://github.com/thanhtunguet/react-i18next-extract",
@@ -25,6 +25,7 @@
   },
   "scripts": {
     "build": "tsc translate.cli.ts",
-    "watch": "tsc translate.cli.ts -w"
+    "watch": "tsc translate.cli.ts -w",
+    "flatten": "node flatten.js"
   }
 }

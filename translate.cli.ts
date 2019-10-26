@@ -10,8 +10,8 @@ const {version} = require('./package.json');
 
 const ENCODING: string = 'utf-8';
 
-function unflatten(jsonTable: {[key: string]: string}) {
-  const result: {[key: string]: any} = {};
+function unflatten(jsonTable: { [key: string]: string }) {
+  const result: { [key: string]: any } = {};
   Object
     .keys(jsonTable)
     .forEach((key: string) => {
@@ -26,6 +26,27 @@ function unflatten(jsonTable: {[key: string]: string}) {
           }
         }
         current = current[namespaces[i]];
+      }
+    });
+  return result;
+}
+
+function flatten(json: { [key: string]: any }, parentKey: string = '') {
+  let result: { [key: string]: string } = {};
+  Object
+    .keys(json)
+    .forEach((key: string) => {
+      const combinedKey: string = parentKey ? `${parentKey}.${key}` : key;
+      if (typeof json[key] !== 'object') {
+        result = {
+          ...result,
+          [combinedKey]: json[key],
+        };
+      } else {
+        result = {
+          ...result,
+          ...flatten(json[key], combinedKey),
+        };
       }
     });
   return result;
@@ -144,7 +165,7 @@ program
             const filePath: string = resolve(partials, `${kebabizedNamespace}.${language}.json`);
             if (existsSync(filePath)) {
               try {
-                const existedKeys: { [key: string]: any } = require(filePath);
+                const existedKeys: { [key: string]: any } = flatten(require(filePath));
                 Object
                   .entries(existedKeys)
                   .forEach(([key, value]) => {
@@ -171,7 +192,7 @@ program
                   };
                 }
               });
-            writeFileSync(filePath, JSON.stringify(updatedKeys, null, indentSize));
+            writeFileSync(filePath, JSON.stringify(unflatten(updatedKeys), null, indentSize));
             // tslint:disable-next-line:no-console
             console.info('Write %d keys to file %s', Object.keys(updatedKeys).length, filePath);
           });
