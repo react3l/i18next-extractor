@@ -6,3 +6,6 @@ README.md
 tsconfig.json
 tslint.json
 yarn.lock
+.vscode/
+.vs/
+.idea/
