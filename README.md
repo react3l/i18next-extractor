@@ -29,3 +29,7 @@ Commands:
   extract [options]                    Extract all translations from your source code
   merge [options]                      Merge all translations for each language into a single JSON file
 ```
+
+Wiki: [https://github.com/thanhtunguet/react-i18next-extract/wiki](https://github.com/thanhtunguet/react-i18next-extract/wiki)
+
+Docs: [https://react-i18next-extract.readthedocs.io](https://react-i18next-extract.readthedocs.io/en/latest/)
