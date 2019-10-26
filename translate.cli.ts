@@ -4,7 +4,7 @@ import * as commander from 'commander';
 import * as merge from 'deepmerge';
 import {existsSync, lstatSync, readdirSync, readFileSync, writeFileSync} from 'fs';
 import {kebabCase} from 'lodash';
-import {join} from 'path';
+import {resolve} from 'path';
 
 const {version} = require('./package.json');
 
@@ -24,7 +24,7 @@ function getFileList(path: string, include?: RegExp, exclude?: RegExp): string[]
   let files: string[] = [];
   readdirSync(path)
     .forEach((entry: string) => {
-      const entryPath: string = join(path, entry);
+      const entryPath: string = resolve(path, entry);
       if (lstatSync(entryPath).isDirectory()) {
         files = [
           ...files,
@@ -56,9 +56,9 @@ program
 
   react-i18next-extract extract [...options]
   `)
-  .option('-i, --input <inputPath>', 'Input path', './src/')
-  .option('-o, --output <outputPath>', 'Output path', './public/assets/i18n/')
-  .option('-p, --partials <partialPath>', 'Partial path', './public/assets/i18n/partials/')
+  .option('-i, --input <inputPath>', 'Input path', 'src/')
+  .option('-o, --output <outputPath>', 'Output path', 'public/assets/i18n/')
+  .option('-p, --partials <partialPath>', 'Partial path', 'public/assets/i18n/partials/')
   .option('-ic, --include <include>', 'Include pattern', '\\.(js|jsx|ts|tsx)$')
   .option('-ex, --exclude <exclude>', 'Exclude pattern', '\\.(spec|test)\\.(js|jsx|ts|tsx)$')
   .option('-ks, --key-separator <keySeparator>', 'Key separator', '.')
@@ -69,9 +69,9 @@ program
 program
   .command('extract')
   .description('Extract all translations from your source code')
-  .option('-i, --input <inputPath>', 'Input path', './src/')
-  .option('-o, --output <outputPath>', 'Output path', './public/assets/i18n/')
-  .option('-p, --partials <partialPath>', 'Partial path', './public/assets/i18n/partials/')
+  .option('-i, --input <inputPath>', 'Input path', 'src/')
+  .option('-o, --output <outputPath>', 'Output path', 'public/assets/i18n/')
+  .option('-p, --partials <partialPath>', 'Partial path', 'public/assets/i18n/partials/')
   .option('-ic, --include <include>', 'Include pattern', '\\.(js|jsx|ts|tsx)$')
   .option('-ex, --exclude <exclude>', 'Exclude pattern', '\\.(spec|test)\\.(js|jsx|ts|tsx)$')
   .option('-ks, --key-separator <keySeparator>', 'Key separator', '.')
@@ -120,10 +120,10 @@ program
         Object
           .entries(namespaces)
           .forEach(([namespace, kebabizedNamespace]) => {
-            const filePath: string = join(partials, `${kebabizedNamespace}.${language}.json`);
+            const filePath: string = resolve(partials, `${kebabizedNamespace}.${language}.json`);
             if (existsSync(filePath)) {
               try {
-                const existedKeys: { [key: string]: any } = require(`./${filePath}`);
+                const existedKeys: { [key: string]: any } = require(filePath);
                 Object
                   .entries(existedKeys)
                   .forEach(([key, value]) => {
@@ -160,8 +160,8 @@ program
 program
   .command('merge')
   .description('Merge all translations for each language into a single JSON file')
-  .option('-p, --partials <partialPath>', 'Partial path', './public/assets/i18n/partials/')
-  .option('-o, --output <outputPath>', 'Output path', './public/assets/i18n/')
+  .option('-p, --partials <partialPath>', 'Partial path', 'public/assets/i18n/partials/')
+  .option('-o, --output <outputPath>', 'Output path', 'public/assets/i18n/')
   .option('-ks, --key-separator <keySeparator>', 'Key separator', '.')
   .option('-is, --indent-size <indent>', 'Indent size', 2)
   .option('-l, --languages <languages...>', 'Supported languages', ['en', 'vi'])
@@ -176,7 +176,7 @@ program
             [language]: {},
           };
         }
-        const loadedKeys: { [key: string]: string } = require(`./${file}`);
+        const loadedKeys: { [key: string]: string } = require(file);
         results = {
           ...results,
           [language]: {
@@ -190,7 +190,7 @@ program
     Object
       .entries(results)
       .forEach(([language, translations]) => {
-        const outputFile: string = join(program.output, `${language}.json`);
+        const outputFile: string = resolve(program.output, `${language}.json`);
         writeFileSync(outputFile, JSON.stringify(translations, null, program.indentSize));
         // tslint:disable-next-line:no-console
         console.info('Language file %s updated', outputFile);
