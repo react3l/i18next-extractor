@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2015",
+      "es2016",
+      "es2017",
+      "es2018",
+      "es2019",
+      "es2020"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "declaration": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noEmit": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules/
+docs/
+.gitignore
+.npmignore
+README.md
+tsconfig.json
+tslint.json
+yarn.lock
