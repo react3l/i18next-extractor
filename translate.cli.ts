@@ -10,6 +10,27 @@ const {version} = require('./package.json');
 
 const ENCODING: string = 'utf-8';
 
+function unflatten(jsonTable: {[key: string]: string}) {
+  const result: {[key: string]: any} = {};
+  Object
+    .keys(jsonTable)
+    .forEach((key: string) => {
+      const namespaces: string[] = key.split('.');
+      let current: { [key: string]: any } = result;
+      for (let i: number = 0; i < namespaces.length; i++) {
+        if (!current.hasOwnProperty(namespaces[i])) {
+          if (namespaces.length - i === 1) {
+            current[namespaces[i]] = jsonTable[key];
+          } else {
+            current[namespaces[i]] = {};
+          }
+        }
+        current = current[namespaces[i]];
+      }
+    });
+  return result;
+}
+
 function match(str: string, include?: RegExp, exclude?: RegExp): boolean {
   if (include) {
     if (include.test(str)) {
@@ -191,7 +212,7 @@ program
       .entries(results)
       .forEach(([language, translations]) => {
         const outputFile: string = resolve(program.output, `${language}.json`);
-        writeFileSync(outputFile, JSON.stringify(translations, null, program.indentSize));
+        writeFileSync(outputFile, JSON.stringify(unflatten(translations), null, program.indentSize));
         // tslint:disable-next-line:no-console
         console.info('Language file %s updated', outputFile);
       });
