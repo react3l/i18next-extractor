@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "target": "es5",
+    "baseUrl": ".",
     "lib": [
       "dom",
       "dom.iterable",
@@ -12,34 +11,29 @@
       "es2019",
       "es2020"
     ],
-    "allowJs": false,
-    "skipLibCheck": true,
+    "outDir": "./dist/",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "declaration": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "experimentalDecorators": true,
     "noUnusedParameters": true,
-    "emitDecoratorMetadata": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strictNullChecks": false,
-    "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "sourceMap": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "./src/translate.cli.ts"
   ],
   "exclude": [
-    "node_modules",
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx"
+    "node_modules/**/*",
+    "./src/**.test.ts",
+    "./src/**.test.tsx",
+    "./src/**.spec.ts",
+    "./src/**.spec.tsx"
   ]
 }

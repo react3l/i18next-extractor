@@ -1,6 +1,7 @@
 node_modules/
-translate.cli.js
+src/translate.cli.js
 yarn.lock
 .vscode/
 .vs/
 .idea/
+dist/
