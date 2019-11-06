@@ -1,6 +1,6 @@
-import {existsSync, readFileSync, writeFileSync} from 'fs';
+import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'fs';
 import {kebabCase} from 'lodash';
-import {resolve} from 'path';
+import {join, resolve} from 'path';
 import {getFileList} from '../helpers/get-file-list';
 import {getMarkedPattern} from '../helpers/get-marker-pattern';
 import {flatten, unflatten} from '../helpers/json';
@@ -45,10 +45,16 @@ export const extract = () => {
     });
   (languages as string[])
     .forEach((language: string) => {
+      try {
+        mkdirSync(join(partials, language));
+      } catch (error) {
+        // tslint:disable-next-line:no-console
+        console.info('Directory existed, no need to create new');
+      }
       Object
         .entries(namespaces)
         .forEach(([namespace, kebabizedNamespace]) => {
-          const filePath: string = resolve(partials, `${kebabizedNamespace}.${language}.json`);
+          const filePath: string = resolve(partials, language, `${kebabizedNamespace}.json`);
           if (existsSync(filePath)) {
             try {
               const existedKeys: { [key: string]: any } = flatten(require(filePath));
