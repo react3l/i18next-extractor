@@ -1,8 +1,8 @@
 {
   "name": "react-i18next-extract",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "React i18next extraction tool",
-  "main": "./dist/translate.cli.js",
+  "main": "./src/translate.cli.js",
   "repository": "https://github.com/thanhtunguet/react-i18next-extract",
   "author": {
     "name": "Thanh Tùng",
@@ -21,11 +21,12 @@
     "typescript": "^3.6.4"
   },
   "bin": {
-    "react-i18next-extract": "./dist/translate.cli.js",
-    "react-i18next": "./dist/translate.cli.js"
+    "react-i18next-extract": "./src/translate.cli.js",
+    "react-i18next": "./src/translate.cli.js"
   },
   "scripts": {
     "watch": "tsc -w",
-    "build": "tsc"
+    "build": "tsc",
+    "publish": "cd dist/ && yarn publish"
   }
 }

@@ -57,7 +57,7 @@ export const extract = () => {
           const filePath: string = resolve(partials, language, `${kebabizedNamespace}.json`);
           if (existsSync(filePath)) {
             try {
-              const existedKeys: { [key: string]: any } = flatten(require(filePath));
+              const existedKeys: { [key: string]: any } = flatten(JSON.parse(readFileSync(filePath, 'utf-8')));
               Object
                 .entries(existedKeys)
                 .forEach(([key, value]) => {

@@ -3,13 +3,7 @@
     "baseUrl": ".",
     "lib": [
       "dom",
-      "dom.iterable",
-      "es2015",
-      "es2016",
-      "es2017",
-      "es2018",
-      "es2019",
-      "es2020"
+      "esnext"
     ],
     "outDir": "./dist/",
     "esModuleInterop": true,
@@ -23,11 +17,11 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": false,
-    "jsx": "preserve",
     "sourceMap": true
   },
   "include": [
-    "./src/translate.cli.ts"
+    "./src/translate.cli.ts",
+    "./package.json"
   ],
   "exclude": [
     "node_modules/**/*",
