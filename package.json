@@ -1,6 +1,6 @@
 {
   "name": "react-i18next-extract",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "React i18next extraction tool",
   "main": "./src/translate.cli.js",
   "repository": "https://github.com/thanhtunguet/react-i18next-extract",
@@ -26,7 +26,6 @@
   },
   "scripts": {
     "watch": "tsc -w",
-    "build": "tsc",
-    "publish": "cd dist/ && yarn publish"
+    "build": "tsc"
   }
 }
