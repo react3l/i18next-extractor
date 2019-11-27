@@ -1,22 +1,46 @@
+interface IJSONObject {
+  [key: string]: string | number | boolean | null | undefined | IJSONObject;
+}
+
+export function sort(json: IJSONObject) {
+  const result: IJSONObject = {};
+  Object
+    .keys(json)
+    .sort()
+    .forEach((key: string) => {
+      result[key] = json[key];
+      if (typeof result[key] === 'object') {
+        result[key] = sort(result[key] as IJSONObject);
+      }
+    });
+  return result;
+}
+
 export function unflatten(jsonTable: { [key: string]: string }) {
   const result: { [key: string]: any } = {};
   Object
     .keys(jsonTable)
     .forEach((key: string) => {
       const namespaces: string[] = key.split('.');
+      const lastIndex: number = namespaces.length - 1;
       let current: { [key: string]: any } = result;
-      for (let i: number = 0; i < namespaces.length; i++) {
-        if (!current.hasOwnProperty(namespaces[i])) {
-          if (namespaces.length - i === 1) {
-            current[namespaces[i]] = jsonTable[key];
+
+      namespaces.forEach((namespace: string, index: number) => {
+        const hasKey: boolean = current.hasOwnProperty(namespace);
+        const isLastIndex = index === lastIndex;
+        if (!hasKey) {
+          if (isLastIndex) {
+            current[namespace] = jsonTable[key];
           } else {
-            current[namespaces[i]] = {};
+            current[namespace] = {};
           }
         }
-        current = current[namespaces[i]];
-      }
+        if (typeof current[namespace] === 'object') {
+          current = current[namespace];
+        }
+      });
     });
-  return result;
+  return sort(result);
 }
 
 export function flatten(json: { [key: string]: any }, parentKey: string = '') {

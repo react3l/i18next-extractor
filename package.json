@@ -1,6 +1,6 @@
 {
   "name": "react-i18next-extract",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "description": "React i18next extraction tool",
   "main": "./src/translate.cli.js",
   "repository": "https://github.com/thanhtunguet/react-i18next-extract",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@types/lodash": "^4.14.144",
+    "@types/lodash": "^4.14.149",
     "@types/node": "^12.11.7",
     "commander": "^3.0.2",
     "deepmerge": "^4.2.1",
