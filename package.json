@@ -29,12 +29,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tslint"
+      "pre-commit": "yarn lint"
     }
   },
   "scripts": {
     "watch": "tsc -w",
     "build": "tsc",
-    "tslint": "tslint --fix src/**/*.{ts,tsx}"
+    "lint": "tslint --fix src/*.ts src/**/*.ts"
   }
 }
