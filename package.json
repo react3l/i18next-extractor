@@ -1,8 +1,8 @@
 {
   "name": "react-i18next-extract",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "React i18next extraction tool",
-  "main": "./src/translate.cli.js",
+  "main": "./dist/translate.cli.js",
   "repository": "https://github.com/thanhtunguet/react-i18next-extract",
   "author": {
     "name": "Thanh Tùng",
@@ -11,21 +11,30 @@
   },
   "license": "MIT",
   "private": false,
+  "dependencies": {
+    "commander": "^3.0.2",
+    "deepmerge": "^4.2.1",
+    "lodash": "^4.17.15"
+  },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
     "@types/node": "^12.11.7",
-    "commander": "^3.0.2",
-    "deepmerge": "^4.2.1",
-    "lodash": "^4.17.15",
+    "husky": "^3.1.0",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.4"
   },
   "bin": {
     "react-i18next-extract": "./src/translate.cli.js",
     "react-i18next": "./src/translate.cli.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tslint"
+    }
+  },
   "scripts": {
     "watch": "tsc -w",
-    "build": "tsc"
+    "build": "tsc",
+    "tslint": "tslint --fix src/**/*.{ts,tsx}"
   }
 }

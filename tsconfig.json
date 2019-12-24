@@ -1,27 +1,34 @@
 {
   "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "checkJs": false,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "lib": [
       "dom",
       "esnext"
     ],
-    "outDir": "./dist/",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noUnusedParameters": true,
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
+    "noUnusedParameters": true,
+    "outDir": "./dist/",
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
     "strictNullChecks": false,
-    "sourceMap": true
+    "typeRoots": [
+      "node_modules/@types/"
+    ]
   },
   "include": [
     "./src/translate.cli.ts",
-    "./package.json"
   ],
   "exclude": [
     "node_modules/**/*",

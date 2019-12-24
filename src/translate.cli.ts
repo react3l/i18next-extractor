@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-import * as commander from 'commander';
-import {extract} from './commands/extract';
-import {merge} from './commands/merge';
+import { Command } from 'commander';
+import { extract } from './commands/extract';
+import { merge } from './commands/merge';
 
-const {version} = require('../package.json');
+const { version } = require('../package.json');
 
 export const ENCODING: string = 'utf-8';
 
-export const program = new commander.Command();
+export const program: Command = new Command();
 
 program
   .version(version)
