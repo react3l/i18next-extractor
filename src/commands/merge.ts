@@ -1,7 +1,7 @@
-import {writeFileSync} from 'fs';
-import {join, resolve} from 'path';
-import {getFileList} from '../helpers/get-file-list';
-import {program} from '../translate.cli';
+import { writeFileSync } from 'fs';
+import { join, resolve } from 'path';
+import { getFileList } from '../helpers/get-file-list';
+import { program } from '../translate.cli';
 
 export const merge = () => {
   let results: { [key: string]: { [key: string]: string } } = {};

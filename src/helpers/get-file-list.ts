@@ -1,6 +1,6 @@
-import {lstatSync, readdirSync} from 'fs';
-import {resolve} from 'path';
-import {match} from './match';
+import { lstatSync, readdirSync } from 'fs';
+import { resolve } from 'path';
+import { match } from './match';
 
 export function getFileList(path: string, include?: RegExp, exclude?: RegExp): string[] {
   let files: string[] = [];

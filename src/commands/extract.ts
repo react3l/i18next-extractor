@@ -1,10 +1,10 @@
-import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'fs';
-import {kebabCase} from 'lodash';
-import {join, resolve} from 'path';
-import {getFileList} from '../helpers/get-file-list';
-import {getMarkedPattern} from '../helpers/get-marker-pattern';
-import {flatten, unflatten} from '../helpers/json';
-import {ENCODING, program} from '../translate.cli';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { kebabCase } from 'lodash';
+import { join, resolve } from 'path';
+import { getFileList } from '../helpers/get-file-list';
+import { getMarkedPattern } from '../helpers/get-marker-pattern';
+import { flatten, unflatten } from '../helpers/json';
+import { ENCODING, program } from '../translate.cli';
 
 export const extract = () => {
   const {
