@@ -36,8 +36,11 @@ translate('namespace.subNamespace.translationKey');
 translate('namespace.subNamespace.translationKey', {param1: value1, param2: value2});
 translate('namespace.subNamespace.translationKey', params);
 ```
-Lưu ý: do những hạn chế của biểu thức nhận đánh dấu key, phần tham số thứ hai không nên chứa các ký tự `)`, `(`, `'`.
-
+Lưu ý:
+- do những hạn chế của biểu thức đánh dấu key, phần tham số thứ hai không nên chứa các ký tự `)`, `(`, `'`.
+- nếu trong thư mục mã nguồn đã xuất hiện cụm 'abc.def' là namespace, thì nó không được phép xuất hiện dưới dạng key.
+  Ví dụ: nếu có `translate('product.detail.name')` rồi thì không được phép có `translate('product.detail')`
+  
 # Command line interface
 
 ```bash
