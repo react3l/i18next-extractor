@@ -1,12 +1,12 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { kebabCase } from 'lodash';
-import { join, resolve } from 'path';
-import { getFileList } from '../helpers/get-file-list';
-import { getMarkedPattern } from '../helpers/get-marker-pattern';
-import { flatten, unflatten } from '../helpers/json';
-import { ENCODING, program } from '../translate.cli';
+import {ENCODING} from 'config/consts';
+import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'fs';
+import {getFileList} from 'helpers/get-file-list';
+import {getMarkedPattern} from 'helpers/get-marker-pattern';
+import {kebabCase} from 'lodash';
+import {join, resolve} from 'path';
+import {program} from 'translate.cli';
 
-export const extract = () => {
+export function extract() {
   const {
     input,
     marker,
@@ -14,10 +14,13 @@ export const extract = () => {
     partials,
     indentSize,
   } = program;
+
   const include: RegExp = new RegExp(program.include);
   const exclude: RegExp = new RegExp(program.exclude);
-  let keys: { [key: string]: string } = {};
-  let namespaces: { [key: string]: string } = {};
+
+  let keys: Record<string, string> = {};
+  let namespaces: Record<string, string> = {};
+
   getFileList(input, include, exclude)
     .forEach((file: string) => {
       const content: string = readFileSync(file, ENCODING);
@@ -57,7 +60,7 @@ export const extract = () => {
           const filePath: string = resolve(partials, language, `${kebabizedNamespace}.json`);
           if (existsSync(filePath)) {
             try {
-              const existedKeys: { [key: string]: any } = flatten(JSON.parse(readFileSync(filePath, 'utf-8')));
+              const existedKeys: Record<string, string> = JSON.parse(readFileSync(filePath, 'utf-8'));
               Object
                 .entries(existedKeys)
                 .forEach(([key, value]) => {
@@ -84,9 +87,9 @@ export const extract = () => {
                 };
               }
             });
-          writeFileSync(filePath, JSON.stringify(unflatten(updatedKeys), null, indentSize));
+          writeFileSync(filePath, JSON.stringify(updatedKeys, null, indentSize));
           // tslint:disable-next-line:no-console
           console.info('Write %d keys to file %s', Object.keys(updatedKeys).length, filePath);
         });
     });
-};
+}

@@ -1,6 +1,6 @@
 {
   "name": "i18next-extractor",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "Extractor for i18next applications",
   "main": "./dist/translate.cli.js",
   "repository": "https://github.com/thanhtunguet/i18next-extractor",
@@ -19,9 +19,14 @@
   "devDependencies": {
     "@types/lodash": "^4.14.149",
     "@types/node": "^12.11.7",
+    "@types/ts-nameof": "^4.2.1",
+    "awesome-typescript-loader": "^5.2.1",
     "husky": "^3.1.0",
+    "ts-nameof": "^5.0.0",
     "tslint": "^5.20.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "bin": {
     "i18next-extractor": "dist/translate.cli.js"
@@ -32,8 +37,11 @@
     }
   },
   "scripts": {
-    "watch": "tsc -w",
-    "build": "tsc",
-    "lint": "tslint --fix src/*.ts src/**/*.ts"
+    "watch": "NODE_ENV=development webpack --watch",
+    "build": "NODE_ENV=production webpack",
+    "lint": "tslint --fix src/*.ts src/**/*.ts",
+    "i18next-extractor": "node .",
+    "extract": "node . -i src/ -o i18n/ -p i18n/ extract",
+    "merge": "node . -i src/ -o i18n/ -p i18n/ merge"
   }
 }

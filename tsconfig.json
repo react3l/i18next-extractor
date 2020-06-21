@@ -2,7 +2,18 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
+    "paths": {
+      "commands": [
+        "src/commands/"
+      ],
+      "config": [
+        "src/config/"
+      ],
+      "helpers": [
+        "src/helpers"
+      ]
+    },
     "checkJs": false,
     "declaration": true,
     "esModuleInterop": true,
@@ -25,10 +36,12 @@
     "strictNullChecks": false,
     "typeRoots": [
       "node_modules/@types/"
-    ]
+    ],
+    "module": "ESNext",
+    "target": "ES3"
   },
   "include": [
-    "./src/translate.cli.ts",
+    "./src/"
   ],
   "exclude": [
     "node_modules/**/*",
