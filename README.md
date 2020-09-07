@@ -1,4 +1,4 @@
-i18next-extractor 
+i18next-extractor
 =================
 _i18next-extractor_ là một công cụ extract ngôn ngữ dành cho ứng dụng React sử dụng bộ `i18next`.
 
@@ -40,7 +40,7 @@ Lưu ý:
 - do những hạn chế của biểu thức đánh dấu key, phần tham số thứ hai không nên chứa các ký tự `)`, `(`, `'`.
 - nếu trong thư mục mã nguồn đã xuất hiện cụm 'abc.def' là namespace, thì nó không được phép xuất hiện dưới dạng key.
   Ví dụ: nếu có `translate('product.detail.name')` rồi thì không được phép có `translate('product.detail')`
-  
+
 # Command line interface
 
 ```bash
@@ -51,7 +51,7 @@ Translate your application using i18next
   react-i18next-extract merge [...options]
 
   react-i18next-extract extract [...options]
-  
+
 
 Options:
   -V, --version                        output the version number

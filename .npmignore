@@ -1,10 +1,9 @@
+.idea/
+.vs/
+.vscode/
 node_modules/
 src/
 .gitignore
 .npmignore
 tsconfig.json
-tslint.json
 yarn.lock
-.vscode/
-.vs/
-.idea/

@@ -1,4 +1,4 @@
-export const ENCODING: string = 'utf-8';
+export const ENCODING: BufferEncoding = 'utf-8';
 
 // translate('hello.thisWorld');
 // translate('hello.thatWorld');
