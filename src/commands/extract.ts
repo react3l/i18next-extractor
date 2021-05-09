@@ -1,10 +1,10 @@
-import {ENCODING} from 'config/consts';
+import {ENCODING} from 'src/config/consts';
 import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'fs';
-import {getFileList} from 'helpers/get-file-list';
-import {getMarkedPattern} from 'helpers/get-marker-pattern';
-import {kebabCase} from 'lodash';
+import {getFileList} from 'src/helpers/get-file-list';
+import {getMarkedPattern} from 'src/helpers/get-marker-pattern';
+import kebabCase from 'lodash/kebabCase';
 import {join, resolve} from 'path';
-import {program} from 'translate.cli';
+import {program} from 'src/index';
 
 export function extract() {
   const {

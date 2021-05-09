@@ -2,17 +2,23 @@ const path = require("path");
 const nameof = require("ts-nameof");
 const webpack = require("webpack");
 
+const mode = process.env.NODE_ENV || "development";
+
 module.exports = {
-  mode: process.env.NODE_ENV || "development",
+  mode,
+  externals: [
+    "fs",
+    "path"
+  ],
   entry: {
-    "translate.cli": path.resolve(__dirname, "src", "translate.cli.ts"),
+    "index": path.resolve(__dirname, "src", "index.ts"),
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
   },
   target: "node",
-  devtool: "source-map",
+  devtool: mode === 'development' ? "source-map" : false,
   resolve: {
     extensions: [
       ".js",
@@ -20,10 +26,9 @@ module.exports = {
       ".ts",
       ".tsx",
     ],
-    modules: [
-      path.resolve(__dirname, "node_modules"),
-      path.resolve(__dirname, "src"),
-    ],
+    alias: {
+      src: path.resolve(__dirname, 'src')
+    }
   },
   module: {
     rules: [

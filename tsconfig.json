@@ -2,16 +2,10 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "commands": [
-        "src/commands/"
-      ],
-      "config": [
-        "src/config/"
-      ],
-      "helpers": [
-        "src/helpers"
+      "src/*": [
+        "./src/*"
       ]
     },
     "checkJs": false,
@@ -20,8 +14,9 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "lib": [
-      "dom",
-      "esnext"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
     ],
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -38,16 +33,16 @@
       "node_modules/@types/"
     ],
     "module": "ESNext",
-    "target": "ES3"
+    "target": "ES5"
   },
   "include": [
-    "./src/"
+    "src/"
   ],
   "exclude": [
     "node_modules/**/*",
-    "./src/**.test.ts",
-    "./src/**.test.tsx",
-    "./src/**.spec.ts",
-    "./src/**.spec.tsx"
+    "src/**.test.ts",
+    "src/**.test.tsx",
+    "src/**.spec.ts",
+    "src/**.spec.tsx"
   ]
 }

@@ -1,8 +1,8 @@
-import {ENCODING} from 'config/consts';
+import {ENCODING} from 'src/config/consts';
 import {readFileSync, writeFileSync} from 'fs';
-import {getFileList} from 'helpers/get-file-list';
+import {getFileList} from 'src/helpers/get-file-list';
 import {join, resolve} from 'path';
-import {program} from 'translate.cli';
+import {program} from 'src/index';
 
 export const merge = () => {
   let results: Record<string, Record<string, string>> = {};
