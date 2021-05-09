@@ -1,5 +1,6 @@
 .idea/
 .vs/
+i18n/
 node_modules/
 src/translate.cli.js
 yarn.lock
