@@ -1,6 +1,6 @@
-import {ENCODING} from 'src/config/consts';
+import { ENCODING } from 'src/config/consts';
 import * as fs from 'fs';
-import {flatten} from 'src/helpers/json';
+import { flatten } from 'src/helpers/json';
 import * as path from 'path';
 
 export function migrate(dir: string) {

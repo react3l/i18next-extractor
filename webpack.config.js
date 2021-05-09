@@ -6,10 +6,6 @@ const mode = process.env.NODE_ENV || "development";
 
 module.exports = {
   mode,
-  externals: [
-    "fs",
-    "path"
-  ],
   entry: {
     "index": path.resolve(__dirname, "src", "index.ts"),
   },
@@ -36,7 +32,7 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: "awesome-typescript-loader",
+            loader: "ts-loader",
             options: {
               getCustomTransformers() {
                 return {

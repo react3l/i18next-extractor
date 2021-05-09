@@ -1,12 +1,14 @@
-import {ENCODING} from 'src/config/consts';
-import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'fs';
-import {getFileList} from 'src/helpers/get-file-list';
-import {getMarkedPattern} from 'src/helpers/get-marker-pattern';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import kebabCase from 'lodash/kebabCase';
-import {join, resolve} from 'path';
-import {program} from 'src/index';
+import { join, resolve } from 'path';
+import { ENCODING } from 'src/config/consts';
+import { Extractor } from 'src/Extractor';
+import { getFileList } from 'src/helpers/get-file-list';
+import { getMarkedPattern } from 'src/helpers/get-marker-pattern';
 
-export function extract() {
+export function extract(this: Extractor) {
+  const program = this;
+
   const {
     input,
     marker,
@@ -46,7 +48,8 @@ export function extract() {
           });
       }
     });
-  (languages as string[])
+  languages
+    .split(",")
     .forEach((language: string) => {
       try {
         mkdirSync(join(partials, language));
